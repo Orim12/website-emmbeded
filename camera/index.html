@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Controle Paneel</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f8f8f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      height: 100px;
+      background-color: #b9a8ee;
+      border: 3px solid #3182ce;
+      box-sizing: border-box;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      width: 90%;
+      margin-top: 50px;
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .controls button {
+      background-color: #e9a8a8;
+      border: none;
+      border-radius: 30px;
+      padding: 15px 40px;
+      font-size: 24px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .controls button:hover {
+      background-color: #d28e8e;
+    }
+
+    .display {
+      background-color: #e9a8a8;
+      width: 700px;
+      height: 400px;
+      padding: 20px;
+      box-sizing: border-box;
+      font-size: 16px;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+  <header></header>
+
+  <div class="container">
+    <div class="controls">
+      <button>stop</button>
+      <button>start</button>
+      <button>pause</button>
+    </div>
+
+    <div class="display">
+      <!-- Inhoud van de display komt hier -->
+    </div>
+  </div>
+</body>
+</html>
