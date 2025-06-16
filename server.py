@@ -7,15 +7,14 @@ from dht11_sensor import lees_sensor
 app = Flask(__name__)
 
 # Lees de inhoud van index.html
-with open('index.html', 'r', encoding='utf-8') as f:
-    html_template = f.read()
+
 
 @app.route('/')
 def home():
     temperatuur, _ = lees_sensor()
     if temperatuur is None:
         temperatuur = 'N/A'
-    pagina = html_template.replace('</body>', f'<div style="position:fixed;top:10px;right:10px;background:#fff;padding:10px;border-radius:8px;box-shadow:0 0 8px #ccc;">Temperatuur: {temperatuur}°C</div></body>')
+    pagina = '</body>', f'<div style="position:fixed;top:10px;right:10px;background:#fff;padding:10px;border-radius:8px;box-shadow:0 0 8px #ccc;">Temperatuur: {temperatuur}°C</div></body>'
     return render_template_string(pagina)
 
 if __name__ == '__main__':
