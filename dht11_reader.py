@@ -1,29 +1,27 @@
 # dht11_reader.py
-# Dit script leest de temperatuur van een DHT11 sensor uit met gpiozero
+# Leest DHT11 sensor uit via pigpio en dht11 community module
+# Zorg dat pigpio draait: sudo systemctl start pigpiod
+# Installeer de dht11 module: pip3 install dht11 pigpio
 
-try:
-    from gpiozero import DHT11
-    from time import sleep
+import pigpio
+import dht11
+import time
 
-    # Stel de GPIO pin in waarop de DHT11 is aangesloten (bijvoorbeeld 4)
-    dht_pin = 4
-    sensor = DHT11(dht_pin)
+DHT_PIN = 4
 
-    def lees_temperatuur():
-        temp = sensor.temperature
-        humidity = sensor.humidity
-        if temp is not None and humidity is not None:
-            print(f"Temp={temp:.1f}C  Luchtvochtigheid={humidity:.1f}%")
-            return temp
-        else:
-            print("Sensor niet gevonden of fout bij uitlezen!")
-            return None
+pi = pigpio.pi()
+sensor = dht11.DHT11(pi, DHT_PIN)
 
-    if __name__ == "__main__":
-        while True:
-            lees_temperatuur()
-            sleep(2)
+def lees_temperatuur():
+    result = sensor.read()
+    if result.is_valid():
+        print(f"Temp={result.temperature}C  Luchtvochtigheid={result.humidity}%")
+        return result.temperature
+    else:
+        print("Sensor niet gevonden of fout bij uitlezen!")
+        return None
 
-except ImportError:
-    print("gpiozero niet gevonden. Installeer met: pip3 install gpiozero")
-    exit(1)
+if __name__ == "__main__":
+    while True:
+        lees_temperatuur()
+        time.sleep(2)
