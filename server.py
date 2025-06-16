@@ -2,7 +2,7 @@
 # Flask-server die index.html serveert en een (gesimuleerde) temperatuur toont
 
 from flask import Flask, render_template_string
-from dht11_sensor import lees_temperatuur
+from dht11_sensor import lees_sensor
 
 app = Flask(__name__)
 
@@ -12,7 +12,7 @@ with open('index.html', 'r', encoding='utf-8') as f:
 
 @app.route('/')
 def home():
-    temperatuur = lees_temperatuur()
+    temperatuur = lees_sensor()
     if temperatuur is None:
         temperatuur = 'N/A'
     pagina = html_template.replace('</body>', f'<div style="position:fixed;top:10px;right:10px;background:#fff;padding:10px;border-radius:8px;box-shadow:0 0 8px #ccc;">Temperatuur: {temperatuur}°C</div></body>')
