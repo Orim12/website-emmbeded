@@ -2,7 +2,7 @@
 # Flask-server die index.html serveert en een (gesimuleerde) temperatuur toont
 
 from flask import Flask, render_template_string
-from dht11_reader import lees_temperatuur
+from dht11_sensor import lees_temperatuur
 
 app = Flask(__name__)
 
