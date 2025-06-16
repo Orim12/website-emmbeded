@@ -10,7 +10,7 @@ import time
 DHT_PIN = 4
 
 pi = pigpio.pi()
-sensor = dht11.DHT11(pi, DHT_PIN)
+sensor = dht11.DHT11(pin=DHT_PIN)
 
 def lees_temperatuur():
     result = sensor.read()
